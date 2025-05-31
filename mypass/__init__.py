@@ -5,6 +5,8 @@ import typing
 
 from flask import Flask
 
+from mypass import db
+
 
 def create_app(test_config: dict[str, typing.Any] | None = None) -> Flask:
     """MyPass application factory"""
@@ -21,5 +23,7 @@ def create_app(test_config: dict[str, typing.Any] | None = None) -> Flask:
     @app.route("/hello")
     def hello():
         return "Hello, World!"
+
+    db.init_app(app)
 
     return app
